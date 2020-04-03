@@ -40,18 +40,18 @@ namespace ATM_Sim
             TextBox request = txtOutput;
             TextBox output = txtOutput; 
 
-            ThreadStart firstThread = new ThreadStart(ATM_1);
+            ThreadStart firstThread = new ThreadStart(ATM_1(ac, request, output));
             atm1_t = new Thread(firstThread);
-            ThreadStart secondThread = new ThreadStart(ATM_2);
+            ThreadStart secondThread = new ThreadStart(ATM_2(ac, request, output));
             atm2_t = new Thread(firstThread);
             // atm = new ATM(ac, request, output);
         }
 
-        public void ATM_1(){
+        public void ATM_1(Account[] ac, TextBox request, TextBox output){
             atm1 = new ATM(ac, request, output);
         }
 
-        public void ATM_2(){
+        public void ATM_2(Account[] ac, TextBox request, TextBox output){
             atm2 = new ATM(ac, request, output);
         }
 
@@ -127,7 +127,7 @@ namespace ATM_Sim
             int input = Convert.ToInt32(txtOutput.Text);
             txtOutput.Text = "";
             
-
+            // this line has an arror atm does not exist
             activeAccount = atm.findAccount(input);
             if (activeAccount != null)
             {
