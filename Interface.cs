@@ -15,10 +15,11 @@ namespace ATM_Sim
     public partial class Interface : Form
     {
 
-        private Thread ATM_1t, ATM_2t;
+        private Thread atm1_t, atm2_t;
 
         private Account[] ac = new Account[3];
-        private ATM atm;
+        private ATM atm1;
+        private ATM atm2;
 
         //this is a referance to the account that is being used
         private Account activeAccount = null;
@@ -40,10 +41,18 @@ namespace ATM_Sim
             TextBox output = txtOutput; 
 
             ThreadStart firstThread = new ThreadStart(ATM_1);
-            ATM_1t = new Thread(firstThread);
+            atm1_t = new Thread(firstThread);
             ThreadStart secondThread = new ThreadStart(ATM_2);
-            ATM_2t = new Thread(firstThread);
+            atm2_t = new Thread(firstThread);
             // atm = new ATM(ac, request, output);
+        }
+
+        public void ATM_1(){
+            atm1 = new ATM(ac, request, output);
+        }
+
+        public void ATM_2(){
+            atm2 = new ATM(ac, request, output);
         }
 
         public void Display(string text)
