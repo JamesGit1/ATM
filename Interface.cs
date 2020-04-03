@@ -8,10 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Threading;
+
 namespace ATM_Sim
 {
     public partial class Interface : Form
     {
+
+        private Thread ATM_1t, ATM_2t;
 
         private Account[] ac = new Account[3];
         private ATM atm;
@@ -33,9 +37,13 @@ namespace ATM_Sim
             ac[2] = new Account(3000, 3333, 333333);
 
             TextBox request = txtOutput;
-            TextBox output = txtOutput;
+            TextBox output = txtOutput; 
 
-            atm = new ATM(ac, request, output);
+            ThreadStart firstThread = new ThreadStart(ATM_1);
+            ATM_1t = new Thread(firstThread);
+            ThreadStart secondThread = new ThreadStart(ATM_2);
+            ATM_2t = new Thread(firstThread);
+            // atm = new ATM(ac, request, output);
         }
 
         public void Display(string text)
