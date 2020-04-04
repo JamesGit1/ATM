@@ -1,0 +1,9 @@
+C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\bin\Debug\ATM_Sim.exe.config
+C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\bin\Debug\ATM_Sim.exe
+C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\bin\Debug\ATM_Sim.pdb
+C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\obj\Debug\ATM_Sim.csprojAssemblyReference.cache
+C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\obj\Debug\ATM_Sim.Interface.resources
+C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\obj\Debug\ATM_Sim.Properties.Resources.resources
+C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\obj\Debug\ATM_Sim.csproj.GenerateResource.cache
+C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\obj\Debug\ATM_Sim.exe
+C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\obj\Debug\ATM_Sim.pdb

@@ -20,6 +20,7 @@ namespace ATM_Sim
         private Account[] ac = new Account[3];
         private ATM atm1;
         private ATM atm2;
+        int stage;
 
         //this is a referance to the account that is being used
         private Account activeAccount = null;
@@ -32,14 +33,17 @@ namespace ATM_Sim
         public Interface()
         {
             InitializeComponent();
+            stage = 0;
 
             ac[0] = new Account(300, 1111, 111111);
             ac[1] = new Account(750, 2222, 222222);
             ac[2] = new Account(3000, 3333, 333333);
 
             TextBox request = txtOutput;
-            TextBox output = txtOutput; 
+            TextBox output = txtOutput;
+            atm1 = new ATM(ac, request, output);
 
+            /*
             // ThreadStart firstThread = new ThreadStart(ATM_1(request, output));
             atm1_t = new Thread(() => ATM_1(request, output));
             // ThreadStart secondThread = new ThreadStart(ATM_2(request, output));
@@ -126,7 +130,8 @@ namespace ATM_Sim
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            stage = 0;
+            txtRequest.Text = "Please enter your account number...";
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -135,17 +140,95 @@ namespace ATM_Sim
         }
 
         private void btnEnter_Click(object sender, EventArgs e)
+        {        
+            menu(); 
+        }
+
+        void menu()
         {
-            string accountNumber = "";
-            string PIN = "";
-            int input = Convert.ToInt32(txtOutput.Text);
-            txtOutput.Text = "";
-            ATM activeATM = atm1;
-            // this line has an arror atm does not exist
-            activeAccount = activeATM.findAccount(input);
-            if (activeAccount != null)
+            if (txtOutput.Text != "")
             {
-                txtRequest.Text = "Please enter pin...";
+                int input = Convert.ToInt32(txtOutput.Text);
+                ATM activeATM = atm1;
+                if (stage == 0)
+                {
+
+                    activeAccount = activeATM.findAccount(input);
+                    if (activeAccount != null)
+                    {
+                        txtRequest.Text = "Please enter pin...";
+                        stage++;
+                    }
+
+                }
+                else if (stage == 1)
+                {
+                    if (activeAccount != null)
+                    {
+                        if (activeAccount.checkPin(input))
+                        {
+                            txtRequest.Text = "1) Take out cash  2) Balance  3) Exit";
+                            stage++;
+                        }
+                        else
+                        {
+                            //attempts++;
+                        }
+                    }
+                }
+                else if (stage == 2)
+                {
+                    if (input == 1)
+                    {
+                        txtRequest.Text = "1) 10  2) 50  3) 500  4) Back";
+                        stage++;
+                    }
+                    if (input == 2)
+                    {
+                        txtRequest.Text = activeAccount.getBalance().ToString();
+                    }
+                    if (input == 3)
+                    {
+                        txtRequest.Text = "Please enter your account number...";
+                        stage = 0;
+                    }
+                }
+                else if (stage == 3)
+                {
+                    if (input == 1)
+                    {
+                        if (!activeAccount.decrementBalance(10))
+                        {
+                            txtRequest.Text += "    Cannot make request";
+                        }
+                        else
+                        {
+                            //txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
+                        }
+                    }
+                    if (input == 2)
+                    {
+                        if (!activeAccount.decrementBalance(50))
+                        {
+                            txtRequest.Text += "    Cannot make request";
+                        }
+                    }
+                    if (input == 3)
+                    {
+                        if (!activeAccount.decrementBalance(500))
+                        {
+                            txtRequest.Text += "    Cannot make request";
+                        }
+                    }
+                    if (input == 4)
+                    {
+                        txtRequest.Text = "1) Take out cash  2) Balance  3) Exit";
+                        stage = 2;
+                    }
+
+
+                }
+                txtOutput.Text = "";
             }
         }
     }
