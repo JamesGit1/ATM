@@ -140,9 +140,9 @@ namespace ATM_Sim
             string PIN = "";
             int input = Convert.ToInt32(txtOutput.Text);
             txtOutput.Text = "";
-            
+            ATM activeATM = atm1;
             // this line has an arror atm does not exist
-            activeAccount = atm1.findAccount(input);
+            activeAccount = activeATM.findAccount(input);
             if (activeAccount != null)
             {
                 txtRequest.Text = "Please enter pin...";
