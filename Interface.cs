@@ -44,20 +44,20 @@ namespace ATM_Sim
             atm1_t = new Thread(() => ATM_1(request, output));
             // ThreadStart secondThread = new ThreadStart(ATM_2(request, output));
             atm2_t = new Thread(() => ATM_2(request, output));
-            // atm = new ATM(ac, request, output);
+            ATM atm = new ATM(ac, request, output);
         }
 
         public void ATM_1(TextBox request, TextBox output){
             atm1 = new ATM(ac, request, output);
             while(true){
-                
+                Console.WriteLine("do 1");
             }
         }
 
         public void ATM_2(TextBox request, TextBox output){
             atm2 = new ATM(ac, request, output);
             while(true){
-                
+                Console.WriteLine("do 2");
             }
         }
 
