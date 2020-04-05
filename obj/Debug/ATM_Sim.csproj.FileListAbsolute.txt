@@ -7,3 +7,13 @@ C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\obj\Debug\AT
 C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\obj\Debug\ATM_Sim.csproj.GenerateResource.cache
 C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\obj\Debug\ATM_Sim.exe
 C:\Users\James\Desktop\Beeps\Uni Work\2nd\2B\ATMProj\ATM-Luke-Edits\obj\Debug\ATM_Sim.pdb
+C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\bin\Debug\ATM_Sim.exe.config
+C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\bin\Debug\ATM_Sim.exe
+C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\bin\Debug\ATM_Sim.pdb
+C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\ATM_Sim.csprojAssemblyReference.cache
+C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\ATM_Sim.Interface.resources
+C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\ATM_Sim.Properties.Resources.resources
+C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\ATM_Sim.csproj.GenerateResource.cache
+C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\ATM_Sim.csproj.CoreCompileInputs.cache
+C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\ATM_Sim.exe
+C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\ATM_Sim.pdb

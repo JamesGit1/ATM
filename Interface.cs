@@ -203,7 +203,10 @@ namespace ATM_Sim
                         }
                         else
                         {
-                            //txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
+                            // This is where the threads need to be started and executed
+                            // only really needs to be one more thread because there is already the main thread that can
+                            // act as one ATM
+                            txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
                         }
                     }
                     if (input == 2)
@@ -212,6 +215,12 @@ namespace ATM_Sim
                         {
                             txtRequest.Text += "    Cannot make request";
                         }
+                        else
+                        {
+                            // I think that this is where the threads need to be started and executed
+                            txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
+                        }
+
                     }
                     if (input == 3)
                     {
@@ -219,6 +228,12 @@ namespace ATM_Sim
                         {
                             txtRequest.Text += "    Cannot make request";
                         }
+                        else
+                        {
+                            // I think that this is where the threads need to be started and executed
+                            txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
+                        }
+
                     }
                     if (input == 4)
                     {
@@ -315,7 +330,6 @@ namespace ATM_Sim
     {
         //local referance to the array of accounts
         private Account[] ac;
-
         private TextBox request;
         private TextBox output;
 
