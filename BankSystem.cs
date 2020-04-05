@@ -34,12 +34,10 @@ namespace ATM_Sim
             raceComboBox.Enabled = false;
             if(raceConditionOn.Checked == true)
             {
-                Console.WriteLine("true");
                 raceCondition = true;
             }
             else
             {
-                Console.WriteLine("false");
                 raceCondition = false;
             }
             atm_t = new Thread(makeNewInterface);
