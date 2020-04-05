@@ -19,8 +19,8 @@ namespace ATM_Sim
         public Account[] ac;
 
         private ATM atm1;
-        private ATM atm2;
         int stage;
+        Mutex mutex;
 
         //this is a referance to the account that is being used
         private Account activeAccount = null;
@@ -30,19 +30,20 @@ namespace ATM_Sim
         * and instanciates the ATM class passing a referance to the account information
         * 
         */
-        public Interface(Account [] ac)
+        public Interface(Account [] ac, Mutex mutex)
         {
             InitializeComponent();
             stage = 0;
             this.ac = ac;
             TextBox request = txtOutput;
             TextBox output = txtOutput;
+            this.mutex = mutex;
             atm1 = new ATM(ac, request, output);
      
         }
 
   
-
+        /*
         public void ATM_1(TextBox request, TextBox output){
             atm1 = new ATM(ac, request, output);
             while(true){
@@ -58,6 +59,7 @@ namespace ATM_Sim
                 Thread.Sleep(0);
             }
         }
+        */
 
         public void Display(string text)
         {
@@ -195,43 +197,16 @@ namespace ATM_Sim
                 {
                     if (input == 1)
                     {
-                        if (!activeAccount.decrementBalance(10))
-                        {
-                            txtRequest.Text += "    Cannot make request";
-                        }
-                        else
-                        {
-                            // This is where the threads need to be started and executed
-                            // only really needs to be one more thread because there is already the main thread that can
-                            // act as one ATM
-                            
-                            txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
-                        }
+                        transaction(10);
                     }
                     if (input == 2)
                     {
-                        if (!activeAccount.decrementBalance(50))
-                        {
-                            txtRequest.Text += "    Cannot make request";
-                        }
-                        else
-                        {
-                            // I think that this is where the threads need to be started and executed
-                            txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
-                        }
+                        transaction(50);
 
                     }
                     if (input == 3)
                     {
-                        if (!activeAccount.decrementBalance(500))
-                        {
-                            txtRequest.Text += "    Cannot make request";
-                        }
-                        else
-                        {
-                            // I think that this is where the threads need to be started and executed
-                            txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
-                        }
+                        transaction(500);
 
                     }
                     if (input == 4)
@@ -245,10 +220,24 @@ namespace ATM_Sim
                 txtOutput.Text = "";
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        
+        public void transaction(int sum)
         {
-
+            if (!activeAccount.checkBalance(sum))
+            {
+                txtRequest.Text += "    Cannot make request";
+            }
+            else
+            {
+                // This is where the threads need to be started and executed
+                // only really needs to be one more thread because there is already the main thread that can
+                // act as one ATM
+                mutex.WaitOne();
+                Thread.Sleep(2000);
+                activeAccount.decrementBalance(sum);
+                txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
+                mutex.ReleaseMutex();
+            }
         }
     }
     /*
@@ -279,6 +268,19 @@ namespace ATM_Sim
             this.balance = newBalance;
         }
 
+
+        public Boolean checkBalance(int sum)
+        {
+            if (this.balance > sum)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /*
          *   This funciton allows us to decrement the balance of an account
          *   it perfomes a simple check to ensure the balance is greater tha
@@ -288,18 +290,12 @@ namespace ATM_Sim
          *   true if the transactions if possible
          *   false if there are insufficent funds in the account
          */
-        public Boolean decrementBalance(int amount)
-        {
-            Thread.Sleep(300);
-            if (this.balance > amount)
-            {
-                balance -= amount;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+
+
+        public int decrementBalance(int amount)
+        { 
+            balance -= amount;
+            return balance;
         }
 
         /*

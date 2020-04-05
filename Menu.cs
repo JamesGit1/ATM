@@ -15,9 +15,10 @@ namespace ATM_Sim
 {   
     public partial class BankSystem : Form
     {
+        private static Mutex mutex = new Mutex();
         public Account[] ac = new Account[3];
-
-        public Thread atm2_t;
+        private int noOfThreads;
+        public Thread atm_t;
 
         public BankSystem()
         {
@@ -25,21 +26,19 @@ namespace ATM_Sim
             ac[0] = new Account(300, 1111, 111111);
             ac[1] = new Account(750, 2222, 222222);
             ac[2] = new Account(3000, 3333, 333333);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
+            noOfThreads = 0;
         }
 
         private void newATM_Click(object sender, EventArgs e)
         {
-            atm2_t = new Thread(makeNewInterface);
-            atm2_t.Start();
+            atm_t = new Thread(makeNewInterface);
+            atm_t.Name = String.Format("Thread{0}", noOfThreads);
+            noOfThreads++;
+            atm_t.Start();
         }
         public void makeNewInterface()
         {
-            Application.Run(new Interface(ac));
+            Application.Run(new Interface(ac, mutex));
         }
     }
 }
