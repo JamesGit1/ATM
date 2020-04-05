@@ -15,9 +15,9 @@ namespace ATM_Sim
     public partial class Interface : Form
     {
 
-        private Thread atm1_t, atm2_t;
+        public Thread atm2_t;
+        public Account[] ac;
 
-        private Account[] ac = new Account[3];
         private ATM atm1;
         private ATM atm2;
         int stage;
@@ -30,32 +30,18 @@ namespace ATM_Sim
         * and instanciates the ATM class passing a referance to the account information
         * 
         */
-        public Interface()
+        public Interface(Account [] ac)
         {
             InitializeComponent();
             stage = 0;
-
-            ac[0] = new Account(300, 1111, 111111);
-            ac[1] = new Account(750, 2222, 222222);
-            ac[2] = new Account(3000, 3333, 333333);
-
+            this.ac = ac;
             TextBox request = txtOutput;
             TextBox output = txtOutput;
             atm1 = new ATM(ac, request, output);
-
-            /*
-            // ThreadStart firstThread = new ThreadStart(ATM_1(request, output));
-            atm1_t = new Thread(() => ATM_1(request, output));
-            // ThreadStart secondThread = new ThreadStart(ATM_2(request, output));
-            atm2_t = new Thread(() => ATM_2(request, output));
-            ATM atm = new ATM(ac, request, output);
-            atm1_t.Start();
-            atm2_t.Start();
-            /*
-            atm1_t.Join();
-            atm2_t.Join();
-            */
+     
         }
+
+  
 
         public void ATM_1(TextBox request, TextBox output){
             atm1 = new ATM(ac, request, output);
@@ -193,6 +179,18 @@ namespace ATM_Sim
                         stage = 0;
                     }
                 }
+                /*
+                // ThreadStart firstThread = new ThreadStart(ATM_1(request, output));
+                atm1_t = new Thread(() => ATM_1(request, output));
+                // ThreadStart secondThread = new ThreadStart(ATM_2(request, output));
+                atm2_t = new Thread(() => ATM_2(request, output));
+                ATM atm = new ATM(ac, request, output);
+                atm1_t.Start();
+                atm2_t.Start();
+                /*
+                atm1_t.Join();
+                atm2_t.Join();
+                */
                 else if (stage == 3)
                 {
                     if (input == 1)
@@ -206,7 +204,7 @@ namespace ATM_Sim
                             // This is where the threads need to be started and executed
                             // only really needs to be one more thread because there is already the main thread that can
                             // act as one ATM
-
+                            
                             txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
                         }
                     }
@@ -247,11 +245,16 @@ namespace ATM_Sim
                 txtOutput.Text = "";
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     /*
      *   The Account class encapusulates all features of a simple bank account
      */
-    class Account
+    public class Account
     {
         //the attributes for the account
         private int balance;
@@ -287,6 +290,7 @@ namespace ATM_Sim
          */
         public Boolean decrementBalance(int amount)
         {
+            Thread.Sleep(300);
             if (this.balance > amount)
             {
                 balance -= amount;

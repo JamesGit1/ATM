@@ -17,3 +17,4 @@ C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\A
 C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\ATM_Sim.csproj.CoreCompileInputs.cache
 C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\ATM_Sim.exe
 C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\ATM_Sim.pdb
+C:\Users\luked\OneDrive\Documents\University\Second_Year\ATM_Sim\ATM\obj\Debug\ATM_Sim.BankSystem.resources
