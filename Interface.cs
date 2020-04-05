@@ -206,6 +206,7 @@ namespace ATM_Sim
                             // This is where the threads need to be started and executed
                             // only really needs to be one more thread because there is already the main thread that can
                             // act as one ATM
+
                             txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
                         }
                     }
