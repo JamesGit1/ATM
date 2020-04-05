@@ -30,7 +30,7 @@ namespace ATM_Sim
         * and instanciates the ATM class passing a referance to the account information
         * 
         */
-        public Interface(Account [] ac, Mutex mutex, Boolean raceCondition = false)
+        public Interface(Account[] ac, Mutex mutex, Boolean raceCondition = false)
         {
             InitializeComponent();
             stage = 0;
@@ -42,7 +42,7 @@ namespace ATM_Sim
             this.raceCondition = raceCondition;
         }
 
-        
+
         public void DisplayBalance()
         {
             string newLine = Environment.NewLine;
@@ -130,7 +130,7 @@ namespace ATM_Sim
 
         private void btn3_Click(object sender, EventArgs e)
         {
-           
+
             if (stage == 3)
             {
                 if (!raceCondition)
@@ -156,7 +156,7 @@ namespace ATM_Sim
 
         private void btn4_Click(object sender, EventArgs e)
         {
-            
+
             if (stage == 3)
             {
                 if (!raceCondition)
@@ -209,7 +209,7 @@ namespace ATM_Sim
         {
             txtOutput.Text += "6";
         }
-            
+
         private void btn7_Click(object sender, EventArgs e)
         {
             txtOutput.Text += "7";
@@ -290,75 +290,84 @@ namespace ATM_Sim
         {
             if (txtOutput.Text != "")
             {
-                int input = Convert.ToInt32(txtOutput.Text);
-                ATM activeATM = atm1;
-                if (stage == 0)
+                int input;
+                try
                 {
-                    if (txtOutput.Text.Length == 6)
+                    input = Convert.ToInt32(txtOutput.Text);
+                    ATM activeATM = atm1;
+                    if (stage == 0)
                     {
-                        activeAccount = activeATM.findAccount(input);
-                        //Will continue to ask for PIN 
-                        txtRequest.Text = "Please enter pin...";
-                        txtOutput.Text = "";
-                        stage++;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please make sure account number is 6 digits", "Account Number", MessageBoxButtons.OK);
-                    }
-
-                }
-                else if (stage == 1)
-                {
-                    if (activeAccount != null)
-                    {
-                        if (txtOutput.Text.Length == 4)
+                        if (txtOutput.Text.Length == 6)
                         {
-                            if (activeAccount.checkPin(input))
-                            {
-                                string newLine = Environment.NewLine;
-                                txtRequest.Text = "Welcome,                         Account Num: " + activeAccount.getAccountNum();
-                                txtOutput.Text = "Would you like to:" + newLine;
-                                txtOutput.Text += "Press 1 to take money from your account " + newLine;
-                                txtOutput.Text += "Press 2 to check your account balance " + newLine;
-                                txtOutput.Text += "Press cancel to exit";
+                            activeAccount = activeATM.findAccount(input);
+                            //Will continue to ask for PIN 
+                            txtRequest.Text = "Please enter pin...";
+                            txtOutput.Text = "";
+                            stage++;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please make sure account number is 6 digits", "Account Number", MessageBoxButtons.OK);
+                        }
 
-                                //Disable other buttons
-                                btn0.Enabled = false;
-                                btn3.Enabled = false;
-                                btn4.Enabled = false;
-                                btn5.Enabled = false;
-                                btn6.Enabled = false;
-                                btn7.Enabled = false;
-                                btn8.Enabled = false;
-                                btn9.Enabled = false;
-                                btnEnter.Enabled = false;
-                                btnClear.Enabled = false;
-                                stage++;
+                    }
+                    else if (stage == 1)
+                    {
+                        if (activeAccount != null)
+                        {
+                            if (txtOutput.Text.Length == 4)
+                            {
+                                if (activeAccount.checkPin(input))
+                                {
+                                    string newLine = Environment.NewLine;
+                                    txtRequest.Text = "Welcome,                         Account Num: " + activeAccount.getAccountNum();
+                                    txtOutput.Text = "Would you like to:" + newLine;
+                                    txtOutput.Text += "Press 1 to take money from your account " + newLine;
+                                    txtOutput.Text += "Press 2 to check your account balance " + newLine;
+                                    txtOutput.Text += "Press cancel to exit";
+
+                                    //Disable other buttons
+                                    btn0.Enabled = false;
+                                    btn3.Enabled = false;
+                                    btn4.Enabled = false;
+                                    btn5.Enabled = false;
+                                    btn6.Enabled = false;
+                                    btn7.Enabled = false;
+                                    btn8.Enabled = false;
+                                    btn9.Enabled = false;
+                                    btnEnter.Enabled = false;
+                                    btnClear.Enabled = false;
+                                    stage++;
+                                }
+                                else
+                                {
+                                    stage = 0;
+                                    txtRequest.Text = "Please enter your account number...";
+                                    txtOutput.Text = "";
+                                    MessageBox.Show("Account Number or PIN inncorrect", "Invaild Details", MessageBoxButtons.OK);
+                                }
                             }
                             else
                             {
-                                stage = 0;
-                                txtRequest.Text = "Please enter your account number...";
-                                txtOutput.Text = "";
-                                MessageBox.Show("Account Number or PIN inncorrect", "Invaild Details", MessageBoxButtons.OK);
+                                MessageBox.Show("Please make sure PIN is 4 digits", "PIN", MessageBoxButtons.OK);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Please make sure PIN is 4 digits", "PIN", MessageBoxButtons.OK);
+                            stage = 0;
+                            txtRequest.Text = "Please enter your account number...";
+                            txtOutput.Text = "";
+                            MessageBox.Show("Account Number or PIN incorrect", "Invaild Details", MessageBoxButtons.OK);
                         }
                     }
-                    else
-                    {
-                        stage = 0;
-                        txtRequest.Text = "Please enter your account number...";
-                        txtOutput.Text = "";
-                        MessageBox.Show("Account Number or PIN incorrect", "Invaild Details", MessageBoxButtons.OK);
-                    }
-                }       
+                }
+                catch (System.OverflowException)
+                {
+                    MessageBox.Show("Error, string entered that is too long", "Invaild Input", MessageBoxButtons.OK);
+                }
             }
         }
+    
         
         public void transaction(int sum, int balance)
         {
