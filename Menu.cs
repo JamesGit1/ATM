@@ -36,6 +36,7 @@ namespace ATM_Sim
             noOfThreads++;
             atm_t.Start();
         }
+
         public void makeNewInterface()
         {
             Application.Run(new Interface(ac, mutex));

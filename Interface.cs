@@ -196,18 +196,21 @@ namespace ATM_Sim
                 */
                 else if (stage == 3 && dataRace == false)
                 {
+                    mutex.WaitOne();
+                    int balance = activeAccount.getBalance();
+
                     if (input == 1)
                     {
-                        transactionMutex(10);
+                        transaction(10, balance);
                     }
                     if (input == 2)
                     {
-                        transactionMutex(50);
+                        transaction(50, balance);
 
                     }
                     if (input == 3)
                     {
-                        transactionMutex(500);
+                        transaction(500, balance);
 
                     }
                     if (input == 4)
@@ -215,23 +218,23 @@ namespace ATM_Sim
                         txtRequest.Text = "1) Take out cash  2) Balance  3) Exit";
                         stage = 2;
                     }
-
-
+                    mutex.ReleaseMutex();
                 }
                 else if (stage == 3 && dataRace == true)
                 {
+                    int balance = activeAccount.getBalance();
                     if (input == 1)
                     {
-                        transaction(10);
+                        transaction(10, balance);
                     }
                     if (input == 2)
                     {
-                        transaction(50);
+                        transaction(50, balance);
 
                     }
                     if (input == 3)
                     {
-                        transaction(500);
+                        transaction(500, balance);
 
                     }
                     if (input == 4)
@@ -246,33 +249,18 @@ namespace ATM_Sim
                 txtOutput.Text = "";
             }
         }
-        
-        public void transactionMutex(int sum)
-        {
-            if (!activeAccount.checkBalance(sum))
-            {
-                txtRequest.Text += "    Cannot make request";
-            }
-            else
-            {
-                mutex.WaitOne();
-                Thread.Sleep(2000);
-                activeAccount.decrementBalance(sum);
-                txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
-                mutex.ReleaseMutex();
-            }
-        }
 
-        public void transaction(int sum)
+        public void transaction(int sum, int balance)
         {
-            if (!activeAccount.checkBalance(sum))
+            if (balance <= sum)
             {
                 txtRequest.Text += "    Cannot make request";
             }
             else
             {
-                Thread.Sleep(2000);
-                activeAccount.decrementBalance(sum);
+                Thread.Sleep(5000);
+                balance -= sum;
+                activeAccount.setBalance(balance);
                 txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
             }
         }
@@ -330,8 +318,9 @@ namespace ATM_Sim
 
 
         public int decrementBalance(int amount)
-        { 
-            balance -= amount;
+        {
+            Thread.Sleep(4000);
+            this.balance -= amount;
             return balance;
         }
 
