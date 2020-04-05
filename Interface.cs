@@ -17,7 +17,7 @@ namespace ATM_Sim
 
         public Thread atm2_t;
         public Account[] ac;
-
+        private Boolean raceCondition;
         private ATM atm1;
         int stage;
         Mutex mutex;
@@ -30,7 +30,7 @@ namespace ATM_Sim
         * and instanciates the ATM class passing a referance to the account information
         * 
         */
-        public Interface(Account [] ac, Mutex mutex)
+        public Interface(Account [] ac, Mutex mutex, Boolean raceCondition = false)
         {
             InitializeComponent();
             stage = 0;
@@ -39,7 +39,7 @@ namespace ATM_Sim
             TextBox output = txtOutput;
             this.mutex = mutex;
             atm1 = new ATM(ac, request, output);
-     
+            this.raceCondition = raceCondition;
         }
 
         
@@ -78,9 +78,20 @@ namespace ATM_Sim
             }
             else if (stage == 3)
             {
-                int balance = activeAccount.getBalance();
-                transaction(10, balance);
-                DisplayBalance();
+                if (!raceCondition)
+                {
+                    mutex.WaitOne();
+                    int balance = activeAccount.getBalance();
+                    transaction(10, balance);
+                    DisplayBalance();
+                    mutex.ReleaseMutex();
+                }
+                else
+                {
+                    int balance = activeAccount.getBalance();
+                    transaction(10, balance);
+                    DisplayBalance();
+                }
             }
             else
             {
@@ -96,9 +107,20 @@ namespace ATM_Sim
             }
             else if (stage == 3)
             {
-                int balance = activeAccount.getBalance();
-                transaction(20, balance);
-                DisplayBalance();
+                if (!raceCondition)
+                {
+                    mutex.WaitOne();
+                    int balance = activeAccount.getBalance();
+                    transaction(20, balance);
+                    DisplayBalance();
+                    mutex.ReleaseMutex();
+                }
+                else
+                {
+                    int balance = activeAccount.getBalance();
+                    transaction(20, balance);
+                    DisplayBalance();
+                }
             }
             else
             {
@@ -111,9 +133,20 @@ namespace ATM_Sim
            
             if (stage == 3)
             {
-                int balance = activeAccount.getBalance();
-                transaction(40, balance);
-                DisplayBalance();
+                if (!raceCondition)
+                {
+                    mutex.WaitOne();
+                    int balance = activeAccount.getBalance();
+                    transaction(40, balance);
+                    DisplayBalance();
+                    mutex.ReleaseMutex();
+                }
+                else
+                {
+                    int balance = activeAccount.getBalance();
+                    transaction(40, balance);
+                    DisplayBalance();
+                }
             }
             else
             {
@@ -126,9 +159,20 @@ namespace ATM_Sim
             
             if (stage == 3)
             {
-                int balance = activeAccount.getBalance();
-                transaction(100, balance);
-                DisplayBalance();
+                if (!raceCondition)
+                {
+                    mutex.WaitOne();
+                    int balance = activeAccount.getBalance();
+                    transaction(100, balance);
+                    DisplayBalance();
+                    mutex.ReleaseMutex();
+                }
+                else
+                {
+                    int balance = activeAccount.getBalance();
+                    transaction(100, balance);
+                    DisplayBalance();
+                }
             }
             else
             {
@@ -140,9 +184,20 @@ namespace ATM_Sim
         {
             if (stage == 3)
             {
-                int balance = activeAccount.getBalance();
-                transaction(500, balance);
-                DisplayBalance();
+                if (!raceCondition)
+                {
+                    mutex.WaitOne();
+                    int balance = activeAccount.getBalance();
+                    transaction(500, balance);
+                    DisplayBalance();
+                    mutex.ReleaseMutex();
+                }
+                else
+                {
+                    int balance = activeAccount.getBalance();
+                    transaction(500, balance);
+                    DisplayBalance();
+                }
             }
             else
             {
@@ -301,19 +356,7 @@ namespace ATM_Sim
                         txtOutput.Text = "";
                         MessageBox.Show("Account Number or PIN incorrect", "Invaild Details", MessageBoxButtons.OK);
                     }
-                }
-                /*
-                // ThreadStart firstThread = new ThreadStart(ATM_1(request, output));
-                atm1_t = new Thread(() => ATM_1(request, output));
-                // ThreadStart secondThread = new ThreadStart(ATM_2(request, output));
-                atm2_t = new Thread(() => ATM_2(request, output));
-                ATM atm = new ATM(ac, request, output);
-                atm1_t.Start();
-                atm2_t.Start();
-                /*
-                atm1_t.Join();
-                atm2_t.Join();
-                */          
+                }       
             }
         }
         

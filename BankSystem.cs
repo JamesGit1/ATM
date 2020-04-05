@@ -19,7 +19,7 @@ namespace ATM_Sim
         public Account[] ac = new Account[3];
         private int noOfThreads;
         public Thread atm_t;
-
+        private Boolean raceCondition;
         public BankSystem()
         {
             InitializeComponent();
@@ -31,6 +31,17 @@ namespace ATM_Sim
 
         private void newATM_Click(object sender, EventArgs e)
         {
+            raceComboBox.Enabled = false;
+            if(raceConditionOn.Checked == true)
+            {
+                Console.WriteLine("true");
+                raceCondition = true;
+            }
+            else
+            {
+                Console.WriteLine("false");
+                raceCondition = false;
+            }
             atm_t = new Thread(makeNewInterface);
             atm_t.Name = String.Format("Thread{0}", noOfThreads);
             noOfThreads++;
@@ -38,7 +49,27 @@ namespace ATM_Sim
         }
         public void makeNewInterface()
         {
-            Application.Run(new Interface(ac, mutex));
+            Application.Run(new Interface(ac, mutex, raceCondition));
+        }
+
+        private void BankSystem_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
