@@ -21,6 +21,7 @@ namespace ATM_Sim
         private ATM atm1;
         int stage;
         Mutex mutex;
+        Boolean dataRace;
 
         //this is a referance to the account that is being used
         private Account activeAccount = null;
@@ -30,7 +31,7 @@ namespace ATM_Sim
         * and instanciates the ATM class passing a referance to the account information
         * 
         */
-        public Interface(Account [] ac, Mutex mutex)
+        public Interface(Account [] ac, Mutex mutex, Boolean dataRace = false)
         {
             InitializeComponent();
             stage = 0;
@@ -39,7 +40,7 @@ namespace ATM_Sim
             TextBox output = txtOutput;
             this.mutex = mutex;
             atm1 = new ATM(ac, request, output);
-     
+            this.dataRace = dataRace;
         }
 
   
@@ -193,7 +194,31 @@ namespace ATM_Sim
                 atm1_t.Join();
                 atm2_t.Join();
                 */
-                else if (stage == 3)
+                else if (stage == 3 && dataRace == false)
+                {
+                    if (input == 1)
+                    {
+                        transactionMutex(10);
+                    }
+                    if (input == 2)
+                    {
+                        transactionMutex(50);
+
+                    }
+                    if (input == 3)
+                    {
+                        transactionMutex(500);
+
+                    }
+                    if (input == 4)
+                    {
+                        txtRequest.Text = "1) Take out cash  2) Balance  3) Exit";
+                        stage = 2;
+                    }
+
+
+                }
+                else if (stage == 3 && dataRace == true)
                 {
                     if (input == 1)
                     {
@@ -217,10 +242,27 @@ namespace ATM_Sim
 
 
                 }
+
                 txtOutput.Text = "";
             }
         }
         
+        public void transactionMutex(int sum)
+        {
+            if (!activeAccount.checkBalance(sum))
+            {
+                txtRequest.Text += "    Cannot make request";
+            }
+            else
+            {
+                mutex.WaitOne();
+                Thread.Sleep(2000);
+                activeAccount.decrementBalance(sum);
+                txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
+                mutex.ReleaseMutex();
+            }
+        }
+
         public void transaction(int sum)
         {
             if (!activeAccount.checkBalance(sum))
@@ -229,14 +271,9 @@ namespace ATM_Sim
             }
             else
             {
-                // This is where the threads need to be started and executed
-                // only really needs to be one more thread because there is already the main thread that can
-                // act as one ATM
-                mutex.WaitOne();
                 Thread.Sleep(2000);
                 activeAccount.decrementBalance(sum);
                 txtRequest.Text += "    Cash Withdrawn [" + activeAccount.getBalance() + "]";
-                mutex.ReleaseMutex();
             }
         }
     }
