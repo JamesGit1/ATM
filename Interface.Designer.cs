@@ -30,8 +30,6 @@
         {
             this.txtOutput = new System.Windows.Forms.TextBox();
             this.btn1 = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn2 = new System.Windows.Forms.Button();
             this.btn3 = new System.Windows.Forms.Button();
             this.btn4 = new System.Windows.Forms.Button();
@@ -45,19 +43,21 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtRequest = new System.Windows.Forms.TextBox();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtOutput
             // 
-            this.txtOutput.Location = new System.Drawing.Point(0, 55);
+            this.txtOutput.AcceptsReturn = true;
+            this.txtOutput.Location = new System.Drawing.Point(0, 37);
+            this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
-            this.txtOutput.Size = new System.Drawing.Size(322, 20);
+            this.txtOutput.ReadOnly = true;
+            this.txtOutput.Size = new System.Drawing.Size(322, 75);
             this.txtOutput.TabIndex = 0;
             // 
             // btn1
             // 
-            this.btn1.Location = new System.Drawing.Point(0, 81);
+            this.btn1.Location = new System.Drawing.Point(0, 118);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(76, 41);
             this.btn1.TabIndex = 1;
@@ -65,25 +65,9 @@
             this.btn1.UseVisualStyleBackColor = true;
             this.btn1.Click += new System.EventHandler(this.btn1_Click);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(323, 24);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
             // btn2
             // 
-            this.btn2.Location = new System.Drawing.Point(82, 81);
+            this.btn2.Location = new System.Drawing.Point(82, 118);
             this.btn2.Name = "btn2";
             this.btn2.Size = new System.Drawing.Size(76, 41);
             this.btn2.TabIndex = 3;
@@ -93,7 +77,7 @@
             // 
             // btn3
             // 
-            this.btn3.Location = new System.Drawing.Point(164, 81);
+            this.btn3.Location = new System.Drawing.Point(164, 118);
             this.btn3.Name = "btn3";
             this.btn3.Size = new System.Drawing.Size(76, 41);
             this.btn3.TabIndex = 4;
@@ -103,7 +87,7 @@
             // 
             // btn4
             // 
-            this.btn4.Location = new System.Drawing.Point(0, 128);
+            this.btn4.Location = new System.Drawing.Point(0, 165);
             this.btn4.Name = "btn4";
             this.btn4.Size = new System.Drawing.Size(76, 41);
             this.btn4.TabIndex = 5;
@@ -113,7 +97,7 @@
             // 
             // btn5
             // 
-            this.btn5.Location = new System.Drawing.Point(82, 128);
+            this.btn5.Location = new System.Drawing.Point(82, 165);
             this.btn5.Name = "btn5";
             this.btn5.Size = new System.Drawing.Size(76, 41);
             this.btn5.TabIndex = 6;
@@ -123,7 +107,7 @@
             // 
             // btn6
             // 
-            this.btn6.Location = new System.Drawing.Point(164, 128);
+            this.btn6.Location = new System.Drawing.Point(164, 165);
             this.btn6.Name = "btn6";
             this.btn6.Size = new System.Drawing.Size(76, 41);
             this.btn6.TabIndex = 7;
@@ -133,7 +117,7 @@
             // 
             // btn7
             // 
-            this.btn7.Location = new System.Drawing.Point(0, 175);
+            this.btn7.Location = new System.Drawing.Point(0, 212);
             this.btn7.Name = "btn7";
             this.btn7.Size = new System.Drawing.Size(76, 41);
             this.btn7.TabIndex = 8;
@@ -143,7 +127,7 @@
             // 
             // btn8
             // 
-            this.btn8.Location = new System.Drawing.Point(82, 175);
+            this.btn8.Location = new System.Drawing.Point(82, 212);
             this.btn8.Name = "btn8";
             this.btn8.Size = new System.Drawing.Size(76, 41);
             this.btn8.TabIndex = 9;
@@ -153,7 +137,7 @@
             // 
             // btn9
             // 
-            this.btn9.Location = new System.Drawing.Point(164, 175);
+            this.btn9.Location = new System.Drawing.Point(164, 212);
             this.btn9.Name = "btn9";
             this.btn9.Size = new System.Drawing.Size(76, 41);
             this.btn9.TabIndex = 10;
@@ -163,7 +147,7 @@
             // 
             // btn0
             // 
-            this.btn0.Location = new System.Drawing.Point(82, 222);
+            this.btn0.Location = new System.Drawing.Point(82, 259);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(76, 41);
             this.btn0.TabIndex = 11;
@@ -173,7 +157,7 @@
             // 
             // btnEnter
             // 
-            this.btnEnter.Location = new System.Drawing.Point(246, 175);
+            this.btnEnter.Location = new System.Drawing.Point(246, 212);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(76, 41);
             this.btnEnter.TabIndex = 12;
@@ -183,7 +167,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(246, 128);
+            this.btnClear.Location = new System.Drawing.Point(246, 165);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(76, 41);
             this.btnClear.TabIndex = 13;
@@ -193,7 +177,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(246, 81);
+            this.btnCancel.Location = new System.Drawing.Point(246, 118);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(76, 41);
             this.btnCancel.TabIndex = 14;
@@ -203,7 +187,8 @@
             // 
             // txtRequest
             // 
-            this.txtRequest.Location = new System.Drawing.Point(1, 29);
+            this.txtRequest.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRequest.Location = new System.Drawing.Point(0, 12);
             this.txtRequest.Name = "txtRequest";
             this.txtRequest.ReadOnly = true;
             this.txtRequest.Size = new System.Drawing.Size(322, 20);
@@ -214,7 +199,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(323, 289);
+            this.ClientSize = new System.Drawing.Size(323, 302);
             this.Controls.Add(this.txtRequest);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnClear);
@@ -230,12 +215,12 @@
             this.Controls.Add(this.btn2);
             this.Controls.Add(this.btn1);
             this.Controls.Add(this.txtOutput);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Interface";
+            this.ShowIcon = false;
             this.Text = "ATM";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,8 +230,6 @@
 
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.Button btn1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.Button btn2;
         private System.Windows.Forms.Button btn3;
         private System.Windows.Forms.Button btn4;
