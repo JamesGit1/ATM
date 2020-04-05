@@ -160,7 +160,7 @@ namespace ATM_Sim
                         }
                         else
                         {
-                            //attempts++;
+                            stage = 0;
                         }
                     }
                 }
