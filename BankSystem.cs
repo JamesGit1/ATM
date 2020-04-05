@@ -52,22 +52,7 @@ namespace ATM_Sim
 
         private void BankSystem_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
+            raceConditionOn.Checked = true;
         }
     }
 }
