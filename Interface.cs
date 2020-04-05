@@ -319,7 +319,6 @@ namespace ATM_Sim
 
         public int decrementBalance(int amount)
         {
-            Thread.Sleep(4000);
             this.balance -= amount;
             return balance;
         }
