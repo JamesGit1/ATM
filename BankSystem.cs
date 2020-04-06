@@ -12,7 +12,7 @@ using System.Threading;
 using ATM_Sim;
 
 namespace ATM_Sim
-{   
+{
     public partial class BankSystem : Form
     {
         public Account[] ac = new Account[3];
@@ -37,7 +37,7 @@ namespace ATM_Sim
             raceComboBox.Enabled = false;
             // if the race condition button is checked, set race-condition to true. Otherwise,
             // keep it false 
-            if(raceConditionOn.Checked == true)
+            if (raceConditionOn.Checked == true)
             {
                 raceCondition = true;
             }
@@ -54,12 +54,28 @@ namespace ATM_Sim
         }
         public void makeNewInterface()
         {
-            Application.Run(new Interface(ac, raceCondition));
+            Interface i = new Interface(ac, this, raceCondition);
+            Application.Run(i);
         }
 
         private void BankSystem_Load(object sender, EventArgs e)
         {
             raceConditionOn.Checked = true;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void logText(string message){
+            string newLine = Environment.NewLine;
+            logBox.Invoke((MethodInvoker) delegate { logBox.Text += message + newLine; });
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -21,6 +21,7 @@ namespace ATM_Sim
         private ATM atm1;
         // The stage of the menu that the user is on
         int stage;
+        BankSystem bankSystem;
 
 
         // This is a referance to the account that is being used
@@ -31,7 +32,7 @@ namespace ATM_Sim
         * and instanciates the ATM class passing a referance to the account information
         * 
         */
-        public Interface(Account[] ac, bool raceCondition = false)
+        public Interface(Account[] ac, BankSystem bankSystem, bool raceCondition = false)
         {
             InitializeComponent();
             stage = 0;
@@ -40,6 +41,7 @@ namespace ATM_Sim
             TextBox output = txtOutput;
             atm1 = new ATM(ac, request, output);
             this.raceCondition = raceCondition;
+            this.bankSystem = bankSystem;
         }
 
         /*
@@ -48,7 +50,7 @@ namespace ATM_Sim
         public void DisplayBalance(bool showBalance)
         {
             string newLine = Environment.NewLine;
-
+            bankSystem.logText("Balance checked for account: " + activeAccount.getAccountNum() + " on " + DateTime.Now.ToString());
             if (showBalance)
             {
                 txtOutput.Text = "Balance: " + activeAccount.getBalance() + newLine;
@@ -224,7 +226,7 @@ namespace ATM_Sim
             if (btn1.Enabled == false)
             {
                 string newLine = Environment.NewLine;
-                txtRequest.Text = "Welcome,                         Account Num: " + activeAccount.getAccountNum();
+                txtRequest.Text = "Welcome, Account Num: " + activeAccount.getAccountNum();
                 txtOutput.Text = "Would you like to:" + newLine;
                 txtOutput.Text += "Press 1 to take money from your account " + newLine;
                 txtOutput.Text += "Press 2 to check your account balance " + newLine;
@@ -282,18 +284,20 @@ namespace ATM_Sim
                     }
                     else if (stage == 1)
                     {
-                        if (activeAccount != null)
+                        if (activeAccount != null && activeAccount.attempts <= 2)
                         {
                             if (txtOutput.Text.Length == 4)
                             {
                                 if (activeAccount.checkPin(input))
                                 {
+                                    activeAccount.attempts = 0;
                                     string newLine = Environment.NewLine;
-                                    txtRequest.Text = "Welcome,                         Account Num: " + activeAccount.getAccountNum();
+                                    txtRequest.Text = "Welcome, Account Num: " + activeAccount.getAccountNum();
                                     txtOutput.Text = "Would you like to:" + newLine;
                                     txtOutput.Text += "Press 1 to take money from your account " + newLine;
                                     txtOutput.Text += "Press 2 to check your account balance " + newLine;
                                     txtOutput.Text += "Press cancel to exit";
+                                    bankSystem.logText("Account with number: " + activeAccount.getAccountNum() + " logged in on " + DateTime.Now.ToString());
 
                                     //Disable other buttons
                                     btn0.Enabled = false;
@@ -314,14 +318,27 @@ namespace ATM_Sim
                                     txtRequest.Text = "Please enter your account number...";
                                     txtOutput.Text = "";
                                     MessageBox.Show("Account Number or PIN inncorrect", "Invaild Details", MessageBoxButtons.OK);
+                                    activeAccount.attempts++;
+                                    bankSystem.logText("Failed login attempt (" + activeAccount.attempts + ") on account: " + activeAccount.getAccountNum() + " on " + DateTime.Now.ToString());
+
                                 }
+                                /*
+                                if (activeAccount.attempts > 3)
+                                {
+                                    MessageBox.Show("Card blocked", "Card Blocked", MessageBoxButtons.OK);
+                                */
                             }
                             else
                             {
                                 MessageBox.Show("Please make sure PIN is 4 digits", "PIN", MessageBoxButtons.OK);
                             }
                         }
-                        else
+                        else if(activeAccount.attempts > 2)
+                        {
+                            MessageBox.Show("Card blocked", "Card Blocked", MessageBoxButtons.OK);
+                            bankSystem.logText("Card Blocked: " + activeAccount.getAccountNum() + " on " + DateTime.Now.ToString());
+                        }
+                        else 
                         {
                             stage = 0;
                             txtRequest.Text = "Please enter your account number...";
@@ -367,6 +384,7 @@ namespace ATM_Sim
                 bool success = withdrawFunds(sum, balance);
                 DisplayBalance(success);
                 activeAccount.sem.Release(1);
+                
             }
             else
             {
@@ -374,6 +392,7 @@ namespace ATM_Sim
                 bool success = withdrawFunds(sum, balance);
                 DisplayBalance(success);
             }
+            bankSystem.logText("£" + sum + " withdrawn from account: " + activeAccount.getAccountNum() + " on " + DateTime.Now.ToString());
         }
     }
     /*
@@ -386,6 +405,7 @@ namespace ATM_Sim
         private int pin;
         private int accountNum;
         public Semaphore sem;
+        public int attempts;
 
         // a constructor that takes initial values for each of the attributes (balance, pin, accountNumber)
         public Account(int balance, int pin, int accountNum)
@@ -394,6 +414,7 @@ namespace ATM_Sim
             this.pin = pin;
             this.accountNum = accountNum;
             this.sem = new Semaphore(1, 1);
+            attempts = 0;
         }
 
         //getter and setter functions for balance
