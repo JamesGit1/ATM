@@ -19,10 +19,11 @@ namespace ATM_Sim
         public Account[] ac;
         private Boolean raceCondition;
         private ATM atm1;
+        // The stage of the menu that the user is on
         int stage;
         Mutex mutex;
 
-        //this is a referance to the account that is being used
+        // This is a referance to the account that is being used
         private Account activeAccount = null;
 
         /*
@@ -42,7 +43,9 @@ namespace ATM_Sim
             this.raceCondition = raceCondition;
         }
 
-
+        /*
+         * Shows the user their bank balance
+         */
         public void DisplayBalance(bool showBalance)
         {
             string newLine = Environment.NewLine;
@@ -58,7 +61,10 @@ namespace ATM_Sim
                 txtOutput.Text += "                         Press enter to return...";
             }
 
+           
+            // Enable enter so that the user can return to the previous menu
             btnEnter.Enabled = true;
+            // Disable all numbered buttons
             btn1.Enabled = false;
             btn2.Enabled = false;
             btn3.Enabled = false;
@@ -69,6 +75,9 @@ namespace ATM_Sim
             stage = 1;
         }
 
+        /*
+         * This function stores what the number 1 button will do under the different stages
+         */
         private void btn1_Click(object sender, EventArgs e)
         {
             if (stage == 2)
@@ -86,6 +95,7 @@ namespace ATM_Sim
 
                 stage++;
             }
+            // Stage 3 is when the user wants to withdraw money, button 1 is to withdraw £10
             else if (stage == 3)
             {
                 performTransaction(10);
@@ -95,6 +105,10 @@ namespace ATM_Sim
                 txtOutput.Text += "1";
             }
         }
+
+        /*
+         * The same thing as button 1
+         */
 
         private void btn2_Click(object sender, EventArgs e)
         {
@@ -175,6 +189,10 @@ namespace ATM_Sim
             txtOutput.Text += "0";
         }
 
+        /*
+         * A button to cancel the current action and log out of the system
+         * Takes the user back to stage 0 where the account number is asked for
+         */
         private void btnCancel_Click(object sender, EventArgs e)
         {
             stage = 0;
@@ -194,6 +212,9 @@ namespace ATM_Sim
             btnClear.Enabled = true;
         }
 
+        /*
+         * This clears the user input
+         */
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtOutput.Text = "";
@@ -210,7 +231,7 @@ namespace ATM_Sim
                 txtOutput.Text += "Press 2 to check your account balance " + newLine;
                 txtOutput.Text += "Press cancel to exit";
 
-                //Enables correct buttons
+                // Enables correct buttons
                 btn0.Enabled = false;
                 btn1.Enabled = true;
                 btn2.Enabled = true;
@@ -231,6 +252,10 @@ namespace ATM_Sim
             }
         }
 
+        /*
+         * Shows the user the menu and keeps track of what stage they are on
+         * Disables the buttons that aren't needed on each stage of the menu
+         */
         void menu()
         {
             if (txtOutput.Text != "")
@@ -313,7 +338,9 @@ namespace ATM_Sim
             }
         }
     
-        
+        /*
+         * Takes money out of the user's account after checking that they have enough
+         */
         public bool withdrawFunds(int sum, int balance)
         {
             if (balance <= sum)
@@ -329,6 +356,9 @@ namespace ATM_Sim
             }
         }
 
+        /*
+         * Performs the transaction based on whether the user selected race-condition or not
+         */
         public void performTransaction(int sum)
         {
             if (!raceCondition)
