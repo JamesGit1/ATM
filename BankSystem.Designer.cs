@@ -38,10 +38,10 @@
             // newATM
             // 
             this.newATM.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newATM.Location = new System.Drawing.Point(11, 11);
-            this.newATM.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.newATM.Location = new System.Drawing.Point(15, 14);
+            this.newATM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.newATM.Name = "newATM";
-            this.newATM.Size = new System.Drawing.Size(129, 80);
+            this.newATM.Size = new System.Drawing.Size(172, 98);
             this.newATM.TabIndex = 0;
             this.newATM.Text = "New ATM";
             this.newATM.UseVisualStyleBackColor = true;
@@ -50,10 +50,10 @@
             // raceConditionOn
             // 
             this.raceConditionOn.AutoSize = true;
-            this.raceConditionOn.Location = new System.Drawing.Point(2, 5);
-            this.raceConditionOn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.raceConditionOn.Location = new System.Drawing.Point(3, 6);
+            this.raceConditionOn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.raceConditionOn.Name = "raceConditionOn";
-            this.raceConditionOn.Size = new System.Drawing.Size(98, 17);
+            this.raceConditionOn.Size = new System.Drawing.Size(125, 21);
             this.raceConditionOn.TabIndex = 0;
             this.raceConditionOn.TabStop = true;
             this.raceConditionOn.Text = "Race Condition";
@@ -63,19 +63,19 @@
             // 
             this.raceComboBox.Controls.Add(this.RaceConditionOff);
             this.raceComboBox.Controls.Add(this.raceConditionOn);
-            this.raceComboBox.Location = new System.Drawing.Point(144, 24);
-            this.raceComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.raceComboBox.Location = new System.Drawing.Point(192, 30);
+            this.raceComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.raceComboBox.Name = "raceComboBox";
-            this.raceComboBox.Size = new System.Drawing.Size(150, 55);
+            this.raceComboBox.Size = new System.Drawing.Size(200, 68);
             this.raceComboBox.TabIndex = 2;
             // 
             // RaceConditionOff
             // 
             this.RaceConditionOff.AutoSize = true;
-            this.RaceConditionOff.Location = new System.Drawing.Point(2, 27);
-            this.RaceConditionOff.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RaceConditionOff.Location = new System.Drawing.Point(3, 33);
+            this.RaceConditionOff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RaceConditionOff.Name = "RaceConditionOff";
-            this.RaceConditionOff.Size = new System.Drawing.Size(115, 17);
+            this.RaceConditionOff.Size = new System.Drawing.Size(147, 21);
             this.RaceConditionOff.TabIndex = 1;
             this.RaceConditionOff.TabStop = true;
             this.RaceConditionOff.Text = "No Race Condition";
@@ -83,13 +83,13 @@
             // 
             // BankSystem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 103);
+            this.ClientSize = new System.Drawing.Size(403, 127);
             this.Controls.Add(this.raceComboBox);
             this.Controls.Add(this.newATM);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "BankSystem";
             this.ShowIcon = false;

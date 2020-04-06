@@ -314,7 +314,7 @@ namespace ATM_Sim
         }
     
         
-        public bool transaction(int sum, int balance)
+        public bool withdrawFunds(int sum, int balance)
         {
             if (balance <= sum)
             {
@@ -335,14 +335,14 @@ namespace ATM_Sim
             {
                 mutex.WaitOne();
                 int balance = activeAccount.getBalance();
-                bool success = transaction(sum, balance);
+                bool success = withdrawFunds(sum, balance);
                 DisplayBalance(success);
                 mutex.ReleaseMutex();
             }
             else
             {
                 int balance = activeAccount.getBalance();
-                bool success = transaction(sum, balance);
+                bool success = withdrawFunds(sum, balance);
                 DisplayBalance(success);
             }
         }
