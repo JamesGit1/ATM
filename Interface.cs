@@ -88,20 +88,7 @@ namespace ATM_Sim
             }
             else if (stage == 3)
             {
-                    if (!raceCondition)
-                    {
-                        mutex.WaitOne();
-                        int balance = activeAccount.getBalance();
-                        bool success = transaction(10, balance);
-                        DisplayBalance(success);
-                        mutex.ReleaseMutex();
-                    }
-                    else
-                    {
-                        int balance = activeAccount.getBalance();
-                        bool success = transaction(10, balance);
-                        DisplayBalance(success);
-                    }
+                performTransaction(10);
             }
             else
             {
@@ -117,20 +104,7 @@ namespace ATM_Sim
             }
             else if (stage == 3)
             {
-                if (!raceCondition)
-                {
-                    mutex.WaitOne();
-                    int balance = activeAccount.getBalance();
-                    bool success = transaction(20, balance);
-                    DisplayBalance(success);
-                    mutex.ReleaseMutex();
-                }
-                else
-                {
-                    int balance = activeAccount.getBalance();
-                    bool success = transaction(20, balance);
-                    DisplayBalance(success);
-                }
+                performTransaction(20);
             }
             else
             {
@@ -143,20 +117,7 @@ namespace ATM_Sim
 
             if (stage == 3)
             {
-                    if (!raceCondition)
-                    {
-                        mutex.WaitOne();
-                        int balance = activeAccount.getBalance();
-                        bool success = transaction(40, balance);
-                        DisplayBalance(success);
-                        mutex.ReleaseMutex();
-                    }
-                    else
-                    {
-                        int balance = activeAccount.getBalance();
-                        bool success = transaction(40, balance);
-                        DisplayBalance(success);
-                    }
+                performTransaction(40);
             }
             else
             {
@@ -169,20 +130,7 @@ namespace ATM_Sim
 
             if (stage == 3)
             {
-                    if (!raceCondition)
-                    {
-                        mutex.WaitOne();
-                        int balance = activeAccount.getBalance();
-                        bool success = transaction(100, balance);
-                        DisplayBalance(success);
-                        mutex.ReleaseMutex();
-                    }
-                    else
-                    {
-                        int balance = activeAccount.getBalance();
-                        bool success = transaction(100, balance);
-                        DisplayBalance(success);
-                    }
+                performTransaction(100);
             }
             else
             {
@@ -194,20 +142,7 @@ namespace ATM_Sim
         {
             if (stage == 3)
             {
-                    if (!raceCondition)
-                    {
-                        mutex.WaitOne();
-                        int balance = activeAccount.getBalance();
-                        bool success = transaction(500, balance);
-                        DisplayBalance(success);
-                        mutex.ReleaseMutex();
-                    }
-                    else
-                    {
-                        int balance = activeAccount.getBalance();
-                        bool success = transaction(500, balance);
-                        DisplayBalance(success);
-                    }
+                performTransaction(500);
             }
             else
             {
@@ -391,6 +326,24 @@ namespace ATM_Sim
                 balance -= sum;
                 activeAccount.setBalance(balance);
                 return true;
+            }
+        }
+
+        public void performTransaction(int sum)
+        {
+            if (!raceCondition)
+            {
+                mutex.WaitOne();
+                int balance = activeAccount.getBalance();
+                bool success = transaction(sum, balance);
+                DisplayBalance(success);
+                mutex.ReleaseMutex();
+            }
+            else
+            {
+                int balance = activeAccount.getBalance();
+                bool success = transaction(sum, balance);
+                DisplayBalance(success);
             }
         }
     }
