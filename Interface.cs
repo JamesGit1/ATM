@@ -17,11 +17,11 @@ namespace ATM_Sim
 
         public Thread atm2_t;
         public Account[] ac;
-        private Boolean raceCondition;
+        private bool raceCondition;
         private ATM atm1;
         // The stage of the menu that the user is on
         int stage;
-        Mutex mutex;
+
 
         // This is a referance to the account that is being used
         private Account activeAccount = null;
@@ -31,14 +31,13 @@ namespace ATM_Sim
         * and instanciates the ATM class passing a referance to the account information
         * 
         */
-        public Interface(Account[] ac, Mutex mutex, Boolean raceCondition = false)
+        public Interface(Account[] ac, bool raceCondition = false)
         {
             InitializeComponent();
             stage = 0;
             this.ac = ac;
             TextBox request = txtOutput;
             TextBox output = txtOutput;
-            this.mutex = mutex;
             atm1 = new ATM(ac, request, output);
             this.raceCondition = raceCondition;
         }
@@ -363,11 +362,11 @@ namespace ATM_Sim
         {
             if (!raceCondition)
             {
-                mutex.WaitOne();
+                activeAccount.sem.WaitOne();
                 int balance = activeAccount.getBalance();
                 bool success = withdrawFunds(sum, balance);
                 DisplayBalance(success);
-                mutex.ReleaseMutex();
+                activeAccount.sem.Release(1);
             }
             else
             {
@@ -386,6 +385,7 @@ namespace ATM_Sim
         private int balance;
         private int pin;
         private int accountNum;
+        public Semaphore sem;
 
         // a constructor that takes initial values for each of the attributes (balance, pin, accountNumber)
         public Account(int balance, int pin, int accountNum)
@@ -393,6 +393,7 @@ namespace ATM_Sim
             this.balance = balance;
             this.pin = pin;
             this.accountNum = accountNum;
+            this.sem = new Semaphore(1, 1);
         }
 
         //getter and setter functions for balance
@@ -406,7 +407,7 @@ namespace ATM_Sim
         }
 
 
-        public Boolean checkBalance(int sum)
+        public bool checkBalance(int sum)
         {
             if (this.balance > sum)
             {
@@ -442,7 +443,7 @@ namespace ATM_Sim
          * true if they match
          * false if they do not
          */
-        public Boolean checkPin(int pinEntered)
+        public bool checkPin(int pinEntered)
         {
             if (pinEntered == pin)
             {

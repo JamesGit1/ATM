@@ -15,7 +15,6 @@ namespace ATM_Sim
 {   
     public partial class BankSystem : Form
     {
-        private static Mutex mutex = new Mutex();
         public Account[] ac = new Account[3];
         private int noOfThreads;
         public Thread atm_t;
@@ -46,7 +45,7 @@ namespace ATM_Sim
             {
                 raceCondition = false;
             }
-            // make a new thread with an interface inside it, passing in the current mutex, account array
+            // make a new thread with an interface inside it, passing in the account array
             // and the user's choice of race condition radio buttons
             atm_t = new Thread(makeNewInterface);
             atm_t.Name = String.Format("Thread{0}", noOfThreads);
@@ -55,7 +54,7 @@ namespace ATM_Sim
         }
         public void makeNewInterface()
         {
-            Application.Run(new Interface(ac, mutex, raceCondition));
+            Application.Run(new Interface(ac, raceCondition));
         }
 
         private void BankSystem_Load(object sender, EventArgs e)
