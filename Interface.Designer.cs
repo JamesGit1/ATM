@@ -57,6 +57,7 @@
             // 
             // btn1
             // 
+            this.btn1.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn1.Location = new System.Drawing.Point(0, 118);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(76, 41);
@@ -67,6 +68,7 @@
             // 
             // btn2
             // 
+            this.btn2.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn2.Location = new System.Drawing.Point(82, 118);
             this.btn2.Name = "btn2";
             this.btn2.Size = new System.Drawing.Size(76, 41);
@@ -77,6 +79,7 @@
             // 
             // btn3
             // 
+            this.btn3.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn3.Location = new System.Drawing.Point(164, 118);
             this.btn3.Name = "btn3";
             this.btn3.Size = new System.Drawing.Size(76, 41);
@@ -87,6 +90,7 @@
             // 
             // btn4
             // 
+            this.btn4.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn4.Location = new System.Drawing.Point(0, 165);
             this.btn4.Name = "btn4";
             this.btn4.Size = new System.Drawing.Size(76, 41);
@@ -97,6 +101,7 @@
             // 
             // btn5
             // 
+            this.btn5.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn5.Location = new System.Drawing.Point(82, 165);
             this.btn5.Name = "btn5";
             this.btn5.Size = new System.Drawing.Size(76, 41);
@@ -107,6 +112,7 @@
             // 
             // btn6
             // 
+            this.btn6.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn6.Location = new System.Drawing.Point(164, 165);
             this.btn6.Name = "btn6";
             this.btn6.Size = new System.Drawing.Size(76, 41);
@@ -117,6 +123,7 @@
             // 
             // btn7
             // 
+            this.btn7.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn7.Location = new System.Drawing.Point(0, 212);
             this.btn7.Name = "btn7";
             this.btn7.Size = new System.Drawing.Size(76, 41);
@@ -127,6 +134,7 @@
             // 
             // btn8
             // 
+            this.btn8.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn8.Location = new System.Drawing.Point(82, 212);
             this.btn8.Name = "btn8";
             this.btn8.Size = new System.Drawing.Size(76, 41);
@@ -137,6 +145,7 @@
             // 
             // btn9
             // 
+            this.btn9.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn9.Location = new System.Drawing.Point(164, 212);
             this.btn9.Name = "btn9";
             this.btn9.Size = new System.Drawing.Size(76, 41);
@@ -147,6 +156,7 @@
             // 
             // btn0
             // 
+            this.btn0.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn0.Location = new System.Drawing.Point(82, 259);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(76, 41);
@@ -157,32 +167,38 @@
             // 
             // btnEnter
             // 
+            this.btnEnter.BackColor = System.Drawing.Color.Green;
+            this.btnEnter.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnter.Location = new System.Drawing.Point(246, 212);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(76, 41);
             this.btnEnter.TabIndex = 12;
             this.btnEnter.Text = "ENTER";
-            this.btnEnter.UseVisualStyleBackColor = true;
+            this.btnEnter.UseVisualStyleBackColor = false;
             this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
             // 
             // btnClear
             // 
+            this.btnClear.BackColor = System.Drawing.Color.Orange;
+            this.btnClear.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.Location = new System.Drawing.Point(246, 165);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(76, 41);
             this.btnClear.TabIndex = 13;
             this.btnClear.Text = "CLEAR";
-            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnCancel
             // 
+            this.btnCancel.BackColor = System.Drawing.Color.Red;
+            this.btnCancel.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(246, 118);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(76, 41);
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "CANCEL";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtRequest
@@ -191,13 +207,13 @@
             this.txtRequest.Location = new System.Drawing.Point(0, 12);
             this.txtRequest.Name = "txtRequest";
             this.txtRequest.ReadOnly = true;
-            this.txtRequest.Size = new System.Drawing.Size(322, 20);
+            this.txtRequest.Size = new System.Drawing.Size(322, 24);
             this.txtRequest.TabIndex = 15;
             this.txtRequest.Text = "Please enter your account number...";
             // 
             // Interface
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(323, 302);
             this.Controls.Add(this.txtRequest);

@@ -53,10 +53,10 @@
             this.raceConditionOn.Location = new System.Drawing.Point(3, 6);
             this.raceConditionOn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.raceConditionOn.Name = "raceConditionOn";
-            this.raceConditionOn.Size = new System.Drawing.Size(125, 21);
+            this.raceConditionOn.Size = new System.Drawing.Size(124, 21);
             this.raceConditionOn.TabIndex = 0;
             this.raceConditionOn.TabStop = true;
-            this.raceConditionOn.Text = "Race Condition";
+            this.raceConditionOn.Text = "Race-condition";
             this.raceConditionOn.UseVisualStyleBackColor = true;
             // 
             // raceComboBox
@@ -75,10 +75,10 @@
             this.RaceConditionOff.Location = new System.Drawing.Point(3, 33);
             this.RaceConditionOff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RaceConditionOff.Name = "RaceConditionOff";
-            this.RaceConditionOff.Size = new System.Drawing.Size(147, 21);
+            this.RaceConditionOff.Size = new System.Drawing.Size(146, 21);
             this.RaceConditionOff.TabIndex = 1;
             this.RaceConditionOff.TabStop = true;
-            this.RaceConditionOff.Text = "No Race Condition";
+            this.RaceConditionOff.Text = "No Race-condition";
             this.RaceConditionOff.UseVisualStyleBackColor = true;
             // 
             // BankSystem

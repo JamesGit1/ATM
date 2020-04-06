@@ -357,7 +357,7 @@ namespace ATM_Sim
         }
 
         /*
-         * Performs the transaction based on whether the user selected race-condition or not
+         * Performs the transaction based on whether the user selected race-condition or np
          */
         public void performTransaction(int sum)
         {
